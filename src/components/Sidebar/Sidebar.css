@@ -1,0 +1,12 @@
+.sidebar li{
+    margin-bottom: 2em;
+    color:"black";
+    display: flex
+}
+.sidebar li:hover {
+    transform: translate(5px);
+    color: #009444
+}
+.sidebar svg{
+    margin-right: 5px;
+}
