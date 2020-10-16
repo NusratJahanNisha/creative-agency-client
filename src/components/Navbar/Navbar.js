@@ -1,3 +1,6 @@
+
+// --------------------------------------NAVBAR OF HOME PAGE------------------------
+
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -35,12 +38,6 @@ const Navbar = () => {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" > <button style={{width:"100px"}} onClick={handleLogin} type="button" class="btn btn-dark">Login</button> </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" > <button style={{width:"100px"}} onClick={handleOrder} type="button" class="btn btn-dark">Order</button> </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" > <button style={{width:"100px"}} onClick={handleAdmin} type="button" class="btn btn-dark">Admin</button> </a>
                         </li>
                     </ul>
                 </div>

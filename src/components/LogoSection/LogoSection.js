@@ -1,14 +1,10 @@
+
+// --------------------------------------LOGO SECTION FOR HOME PAGE------------------------
+
 import React from 'react';
 
 const LogoSection = () => {
-    const logos = [
-        { image: "https://i.ibb.co/3m2QMXz/airbnb.png" },
-        { image: "https://i.ibb.co/Zzq0Rwy/google.png" },
-        { image: "https://i.ibb.co/zZ9h4bF/netflix.png" },
-        { image: "https://i.ibb.co/VHvQLJP/slack.png" },
-        { image: "https://i.ibb.co/1sJFzhM/uber.png" }
-    ]
-
+    
     return (
         <div class="container" style={{marginTop:"100px",marginBottom:"200px"}}>
             <div className="row">

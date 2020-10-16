@@ -1,3 +1,6 @@
+
+// --------------------------------------USER NAVBAR------------------------
+
 import React, { useContext } from 'react';
 import { UserContext } from '../../App';
 
@@ -13,12 +16,15 @@ const UserNavbar = () => {
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active" >
-                            <b> <a class="nav-link" href="#" style={{marginLeft:"100px"}}>Order <span class="sr-only">(current)</span></a></b>
+                            <b> <a class="nav-link" href="#" style={{ marginLeft: "100px" }}>Order <span class="sr-only">(current)</span></a></b>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active mr-3">
-                         <b> <a class="nav-link" href="#">{loggedInUser.name} <span class="sr-only">(current)</span></a></b>
+                            <img style={{ width: "50%", height: "50px",border:"white", width: "50px", padding: "7px" }} src={loggedInUser.image} alt="" />
+                        </li>
+                        <li class="nav-item active mr-3">
+                            <b> <a class="nav-link" href="#">{loggedInUser.name} <span class="sr-only">(current)</span></a></b>
                         </li>
                     </ul>
                 </div>

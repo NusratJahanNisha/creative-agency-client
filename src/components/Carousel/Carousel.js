@@ -1,3 +1,6 @@
+
+// --------------------------------------CAROUSEL OF HOME PAGE------------------------
+
 import React from 'react';
 
 const Carousel = () => {

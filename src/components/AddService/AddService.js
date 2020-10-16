@@ -1,45 +1,65 @@
-import React from 'react';
+
+// ---------------------------------------ADMIN ADD SERVICE SECTION----------------------------
+
+import React, { useState } from 'react';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
-import { useForm } from 'react-hook-form';
 
 const AddService = () => {
-    const { register, handleSubmit,errors } = useForm();
-    const onSubmit = data => {
-        console.log(data);
-        const newService = { ...data }
-        fetch("http://localhost:9000/addService", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newService)
+    const formData = new FormData()
+    const [file, setFile] = useState(null);
+    const [info, setInfo] = useState({})
+    const handleBlur = e => {
+        const newInfo = { ...info }
+        newInfo[e.target.name] = e.target.value;
+        setInfo(newInfo);
+    }
+    const handleFileChange = (e) => {
+        const newFile = e.target.files[0];
+        setFile(newFile);
+    }
+    const handleSubmit = () => {
+        formData.append('file', file)
+        formData.append('name', info.name)
+        formData.append('description', info.description)
+        fetch('http://localhost:9000/addAService', {
+            method: 'POST',
+            body: formData
         })
-            .then(res => res.json())
+            .then(response => response.json())
             .then(data => {
-                console.log(data);
-                alert("Your service is created successfully.You'll see it on the home page.Visit home page to see your service")
+                console.log(data)
+            })
+            .catch(error => {
+                console.error(error)
             })
     }
+
     return (
         <div class="container">
-            <AdminNavbar></AdminNavbar>
-            <div className="row">
-                <div className="col-md-3">
-                    <AdminSidebar></AdminSidebar>
-                </div>
-                <div className="col-md-9" style={{ backgroundColor: "#F4F7FC", height: "100vh" }}>
-
-                    <form className="ship-form" onSubmit={handleSubmit(onSubmit)}>
-                        <div style={{ background: "white", marginTop: "10px", padding: "10px", borderRadius: "10px", marginBottom: "10px" }}>
-                            <input name="adminServiceTitle" style={{ margin: '10px', marginLeft: "20px", marginTop: "30px", width: '300px', height: '40px', boxShadow: "3px 3px 3px 3px lightGrey", border: "white", padding: "15px" }} ref={register({ required: true })} placeholder="Enter service title " />
-                            {errors.adminServiceTitle && <span className="error" style={{ color: "red", margin: "5px" }} >Service title is required </span>} <br />
-
-                            <input name="adminServiceDescription" style={{ margin: '10px', marginLeft: "20px", width: '300px', height: '40px', border: "white", padding: "15px", boxShadow: "3px 3px 3px 3px lightGrey" }} ref={register({ required: true })} placeholder="Enter Description" />
-                            {errors.adminServiceDescription && <span className="error" style={{ color: "red", margin: "5px" }}>Description is required</span>}<br />
-                        </div>
-
-                        <input style={{ margin: '10px', width: '100px', marginLeft: "30px", height: '40px', color: "white", backgroundColor: "#75AA57" }} type="Submit" /> <br />
-
-                    </form>
+            <div>
+                <AdminNavbar></AdminNavbar>
+                <div className="row">
+                    <div className="col-md-3">
+                        <AdminSidebar></AdminSidebar>
+                    </div>
+                    <div className="col-md-9" style={{ backgroundColor: "#F4F7FC", height: "100vh",padding: "50px" }}>
+                        <form style={{background:"white", borderRadius:"15px",padding:"40px"}} onSubmit={handleSubmit}>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Service Title</label>
+                                <input style={{width:"400px"}} onBlur={handleBlur} name="name" type="text" class="form-control" placeholder="Enter title" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Description</label> <br/>
+                                <input style={{width:"400px", height:"70px"}} onBlur={handleBlur} name="description" type="text"  class="form-control"placeholder="Enter Description" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Icon</label>
+                                <input  style={{width:"400px", border:"white",padding:"0"}} onChange={handleFileChange} type="file" class="form-control" id="exampleInputPassword1" placeholder="Upload image" />
+                            </div>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

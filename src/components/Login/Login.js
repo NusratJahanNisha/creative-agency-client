@@ -1,3 +1,6 @@
+
+// --------------------------------------LOGIN SECTION FOR USER AND ADMIN------------------------
+
 import React, { useContext } from 'react';
 import * as firebase from "firebase/app";
 import firebaseConfig from './firebase.config';

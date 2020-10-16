@@ -1,41 +1,58 @@
-import React, { useContext } from 'react';
+
+// -------------------------------------DETAILS OF THE SERVICE WHICH USER TOOK------------------------
+
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ServiceContext, UserContext } from '../../App';
 import './ServiceDetails.css';
+import './logoAnimation.css';
+
 
 const ServiceDetails = (props) => {
-    const { serviceName, image, details, price } = props.service;
-    const history = useHistory()
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [isAdmin, setIsAdmin] = useState(false);
+    useEffect(() => {
+        fetch("http://localhost:9000/isAdmin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: loggedInUser.email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                setIsAdmin(data);
+            })
+    }, [])
+
+    const { name, description, image  } = props.service;
+
     const [serviceDetails, setServiceDetails] = useContext(ServiceContext);
+    const history = useHistory()
+
 
     const handleOrder = () => {
-        history.push(`/finalOrder`);
-        console.log(serviceName, image, details, price)
+    
+        if (isAdmin === true) {
+            history.push(`/addService`);
+            console.log(isAdmin);
+        }
+        else {
+            history.push(`/finalOrder`);
+            console.log(isAdmin);
+        }
+
+
         const serviceInfo = {
-            serviceName: serviceName,
-            serviceImage: image,
-            serviceDetails: details,
-            servicePrice: price
+            serviceName: name,
+            serviceDetails: description,
+            servicePrice: 110,
+            serviceImage: image
         }
         setServiceDetails(serviceInfo);
 
     }
 
 
-
-
-
     return (
-        // <div className="row" class="services"  >
-        //     <div className="col-md-4" style={{ padding: "25px" }} >
-        //         <img style={{ width: "50%", height: "70px", width: "70px", marginLeft: "70px" }} src={image} alt="" />
-        //         <h3>{serviceName}</h3>
-        //         <p class="text-secondary">{details}</p>
-        //     </div>
-
-        // </div>
-
-
         <section>
             <div onClick={handleOrder} class="servicesDetails" style={{
                 border: "white", padding: "27px",
@@ -43,10 +60,14 @@ const ServiceDetails = (props) => {
                 height: "370px",
                 width: "30%"
             }}>
-                <img src={image} style={{ width: "50%", height: "70px", width: "70px" }} class="card-img-top mx-auto d-block" alt="..." />
+                
+                <div className="logoAnimation card-img-top mx-auto d-block">
+                    <img style={{height:"70px", width:"120px",width:"50%"}} src={`data:image/png;base64,${image.img}`} alt="..." />
+                </div>
+
                 <div>
-                    <h3 style={{ textAlign: "center" }}>{serviceName}</h3>
-                    <p class="text-secondary">{details}</p>
+                    <h3 style={{ textAlign: "center" }}>{name}</h3>
+                    <p class="text-secondary">{description}</p>
                 </div>
             </div>
         </section>

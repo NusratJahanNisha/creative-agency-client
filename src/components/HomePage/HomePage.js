@@ -1,3 +1,6 @@
+
+// --------------------------------------HOME PAGE FOR USER AND ADMIN------------------------
+
 import React from 'react';
 import Carousel from '../Carousel/Carousel';
 import FeedBack from '../FeedBack/FeedBack';

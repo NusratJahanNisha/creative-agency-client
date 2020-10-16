@@ -1,10 +1,12 @@
-import React from 'react';
+
+// -------------------------------------USER SIDEBAR------------------------
+
+import React, { useContext, useEffect, useState } from 'react';
 import './Sidebar.css'
 import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faCommentDots, faClipboardList } from '@fortawesome/free-solid-svg-icons';
-import UserNavbar from '../UserNavbar/UserNavbar';
-import OrderDetails from '../OrderDetails/OrderDetails';
+import { UserContext } from '../../App';
 
 const Sidebar = () => {
     const history = useHistory()
@@ -28,7 +30,7 @@ const Sidebar = () => {
                         <FontAwesomeIcon icon={faClipboardList} /> <span>Service list</span>
                     </li>
                     <li onClick={handleReview}>
-                        <FontAwesomeIcon  icon={faCommentDots} /> <span>Review</span>
+                        <FontAwesomeIcon icon={faCommentDots} /> <span>Review</span>
                     </li>
                 </ul>
             </div>

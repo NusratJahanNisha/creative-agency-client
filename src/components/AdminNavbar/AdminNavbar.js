@@ -1,8 +1,11 @@
+// ---------------------------------ADMIN NAVBAR DESIGN SECTION----------------------------------
+
 import React, { useContext } from 'react';
 import { UserContext } from '../../App';
 
 const AdminNavbar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    console.log(loggedInUser)
     return (
         <div>
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -13,8 +16,7 @@ const AdminNavbar = () => {
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active mr-3">
-                            <b> <a class="nav-link" href="#"><span class="sr-only">(current)
-                         <img style={{ width: "50%", height: "70px", width: "70px" }} src={loggedInUser.photoURL} alt="" /></span></a></b>
+                            <img style={{ width: "50%", height: "50px", border: "white", width: "50px", padding: "7px" }} src={loggedInUser.image} alt="" />
                         </li>
                         <li class="nav-item active mr-3">
                             <b> <a class="nav-link" href="#">{loggedInUser.name} <span class="sr-only">(current)</span></a></b>
