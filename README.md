@@ -1,3 +1,26 @@
+# Creative Agency Client
+## [Live Website ](https://creative-agency-522c7.web.app/)
+## [Backend Repository](https://github.com/NusratJahanNisha/creative-agency-server)
+## Features
+- This is a Service Seller Web Application
+- Developed this full-stack website in this way where it can detect the entrance of user or admin.
+- And also can show the result according to the user or admin. 
+- Users can buy any services and give feedback. 
+- Whereas admin can make both services and admin. And also can see the detailed information of users. 
+- All the interaction information is saved in the database and is loaded from the database. 
+## Technology
+  - React
+  - React Router
+  - Node.js
+  - MongoDB
+  - Firebase Authentication
+  - Heroku
+  - Bootstrap
+  - CSS3
+  - HTML5 
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,4 +89,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# creative-agency-client
+
